@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "Azan",
+    "slug": "azan-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Your location is used to compute prayer times, the Qibla direction, and to detect when you are home so the azan sound can play.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Background location lets the app switch between the azan sound (at home) and a normal notification (away from home).",
+        "UIBackgroundModes": ["location", "fetch"]
+      }
+    },
+    "android": {
+      "package": "com.azan.app",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "POST_NOTIFICATIONS",
+        "VIBRATE"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "isAndroidBackgroundLocationEnabled": true,
+          "locationAlwaysAndWhenInUsePermission": "Background location lets the app switch between the azan sound (at home) and a normal notification (away from home)."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "sounds": ["./assets/sounds/azan.wav"]
+        }
+      ]
+    ]
+  }
+}

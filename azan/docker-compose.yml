@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  api:
+    build: ./backend
+    container_name: azan_api
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgres://azan:azan@postgres:5432/azan?sslmode=disable
+      - LISTEN_ADDR=:8081
+    ports:
+      - "8081:8081"
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: azan_postgres
+    environment:
+      - POSTGRES_USER=azan
+      - POSTGRES_PASSWORD=azan
+      - POSTGRES_DB=azan
+    ports:
+      - "5432:5432"
+    volumes:
+      - azan_pgdata:/var/lib/postgresql/data
+
+volumes:
+  azan_pgdata:
